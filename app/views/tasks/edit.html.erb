@@ -1,0 +1,12 @@
+<ul class="breadcrumb">
+	<li>
+		<%= link_to "Lists", root_url %> <span class="divider">/</span>
+	</li>
+	<li>
+		<%= link_to @task.list.name, list_url(@task.list) %>
+	</li>
+</ul>
+<hr />
+
+<%= render 'form' %>
+

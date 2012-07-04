@@ -1,0 +1,32 @@
+<%= content_tag_for :div, task do %>
+	<h3>
+		<% if task.completed %>
+			<%= link_to image_tag('checkbox-checked.png'), toggle_list_task_url(@list, task), :method => :post %>
+		<% else %>
+			<%= link_to image_tag('checkbox.png'), toggle_list_task_url(@list, task), :method => :post %>
+		<% end %>
+		<%= link_to task.title, list_task_url(@list, task) %>		
+		<small class="pull-right">
+			<% if task.description? %>
+				<i class="icon-asterisk" title="Task has description"></i>
+			<% end %>
+			<% if task.comments.count > 0 %>
+				<i class="icon-comment" title="Task has comments"></i>
+			<% end %>
+			<% if task.user %>
+				<span class="user"><%= task.user.name %></span>
+			<% end %>
+			<% if task.due_date && !task.completed? %>
+				<% if task.due_date == Time.now.to_date %>
+					<span class="due today">Today</span>
+				<% elsif task.due_date == Time.now.to_date + 1.day %>
+					<span class="due tomorrow">Tomorrow</span>
+				<% elsif task.due_date.past? %>
+					<span class="due overdue"><%= distance_of_time_in_words(task.due_date, Time.now.to_date) %> overdue</span>
+				<% else %>
+					<span class="due"><%= task.due_date %></span>
+				<% end %>
+			<% end %>
+		</small>
+	</h3>
+<% end %>

@@ -1,0 +1,47 @@
+#header {
+	padding: 30px 0;
+}
+
+h1 { padding-bottom: 30px; }
+
+.task, .list {
+	padding: 5px;
+	margin: 5px 0;
+	border: 1px solid #ddd;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	h3 {
+		font-weight: normal !important;
+	}
+}
+
+.due, .user {
+	font-size: .8em;
+	padding: 1px 5px;
+	border: 2px solid #999;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
+.today {
+	border-color: #eb6e35;
+}
+
+.tomorrow {
+	border-color: #f9b603;
+}
+
+.overdue {
+	border-color: #fb0009;
+}
+
+.comment {
+	padding-left: 20px;
+	margin: 20px 0;
+	border-left: 3px solid #eee;
+}
+
+$gridColumns: 10;
+@import "bootstrap";

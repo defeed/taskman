@@ -1,0 +1,13 @@
+<%= content_tag_for :div, list do %>
+	<h3>
+		<%= link_to list.name, list %>
+		<small class="pull-right">
+			<%= link_to 'edit', edit_list_path(list) %> | <%= link_to 'delete', list, method: :delete, data: { confirm: 'Are you sure to delete this list and all its tasks?' } %>
+		</small>
+	</h3>
+	<p>
+		<%= list.tasks.count %> total &bull;
+		<%= list.tasks.incomplete.count %> incomplete &bull;
+		<%= list.tasks.incomplete.due_today.count %> due today
+	</p>
+<% end %>

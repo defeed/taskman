@@ -1,0 +1,10 @@
+<%= content_tag_for :div, comment do %>
+	<h5>
+		<%= comment.user.name  %>
+		<small>
+			(<%= time_ago_in_words(comment.created_at) %> ago)
+			<%= link_to("×", list_task_comment_url(@list, @task, comment), method: :delete, remote: true, format: :js) if comment.user == current_user %>
+		</small>
+	</h5>
+	<%= markdown comment.body %>
+<% end %>

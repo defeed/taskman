@@ -1,0 +1,45 @@
+<ul class="breadcrumb">
+	<li>
+		<%= link_to "Lists", root_url %> <span class="divider">/</span>
+	</li>
+	<li>
+		<%= link_to @task.list.name, list_url(@task.list) %>
+	</li>
+</ul>
+<hr />
+<h3>
+	<% if @task.completed %>
+		<%= link_to image_tag('checkbox-checked.png'), toggle_list_task_url(@list, @task), :method => :post %>
+	<% else %>
+		<%= link_to image_tag('checkbox.png'), toggle_list_task_url(@list, @task), :method => :post %>
+	<% end %>
+	<%= @task.title %>
+	<small class="pull-right">
+		<%= link_to "edit", edit_list_task_url(@list, @task) %> |
+		<%= link_to "delete", list_task_url(@list, @task), method: :delete, data: { confirm: 'Are you sure?' }%>
+	</small>
+</h3>
+<hr />
+<% if @task.due_date %>
+	<p>Due date:
+	<% if @task.due_date == Time.now.to_date %>
+		Today
+	<% elsif @task.due_date == Time.now.to_date + 1.day %>
+		Tomorrow
+	<% elsif @task.due_date.past? %>
+		<%= "#{@task.due_date.to_s(:full)} (#{distance_of_time_in_words(@task.due_date, Time.now.to_date)} ago)" %>
+	<% else %>
+		<%= "#{@task.due_date.to_s(:full)} (in #{distance_of_time_in_words(@task.due_date, Time.now.to_date)})" %>
+	<% end %>
+	</p>
+<% end %>
+<p><%= assigned_person %></p>
+<%= markdown @task.description %>
+
+<hr />
+<div id="comments">
+	<h4>Comments:</h4>
+	<%= render @comments %>
+</div>
+
+<%= render 'comments/form' %>

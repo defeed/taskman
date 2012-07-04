@@ -1,0 +1,12 @@
+<%= form_for [@list, @task, @comment], :html => { :id => "new-comment-form" }, :remote => true do |f| %>
+	<fieldset>
+		<div class="control-group">
+			<div class="controls">
+				<%= f.hidden_field :task_id, :value => @task.id %>
+				<%= f.hidden_field :user_id, :value => current_user.id %>
+				<%= f.text_area :body, :placeholder => "Enter your comment", :rows => 3, :class => "span6" %><br />
+				<%= f.submit "Post comment", :class => "btn" %>
+			</div>
+		</div>
+	</fieldset>
+<% end %>

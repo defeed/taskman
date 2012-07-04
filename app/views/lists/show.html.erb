@@ -1,0 +1,29 @@
+<ul class="breadcrumb">
+	<li>
+		<%= link_to "Lists", root_url %> <span class="divider">/</span>
+	</li>
+	<li>
+		 <%= @list.name %>
+	</li>
+</ul>
+<h2><%= best_in_place @list, :name %></h2>
+<%= link_to "New Task", "#new-task", :id => "new-task", :class => "btn" %>
+
+<%= form_for [@list, @task], :html => { :id => "new-task-form" } do |f| %>
+	<fieldset>
+		<div class="control-group">
+			<div class="controls">
+				<%= f.text_field :title, :placeholder => "Task", :class => "span6" %><br />
+				<%= f.text_area :description, :placeholder => "Description", :rows => 3, :class => "span6" %><br />
+				<%= f.text_field :due_date, :class => "datepicker", :placeholder => "Due date" %>
+				<%= collection_select(:task, :user_id, User.all, :id, :name, :prompt => "Assigned person") %><br />
+				<%= f.submit :class => "btn" %>
+				<%= link_to "Cancel", "#", :id => "cancel", :class => "btn" if @task.new_record? %>
+			</div>
+		</div>
+	</fieldset>
+<% end %>
+
+<div id="tasks" data-update-url="<%= sort_list_tasks_url(@list, @task) %>">
+	<%= render @tasks %>
+</div>

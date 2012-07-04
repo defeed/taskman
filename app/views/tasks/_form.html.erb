@@ -1,0 +1,22 @@
+<%= form_for [@list, @task] do |f| %>
+<% if @task.errors.any? %>
+  <div class="alert alert-error">
+    <ul>
+    <% @task.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+	<fieldset>
+		<div class="control-group">
+			<div class="controls">
+				<%= f.text_field :title, :placeholder => "Task", :class => "span6" %><br />
+				<%= f.text_area :description, :placeholder => "Description", :rows => 6, :class => "span6" %><br />
+				<%= f.text_field :due_date, :class => "datepicker", :placeholder => "Due date" %>
+				<%= collection_select(:task, :user_id, User.all, :id, :name, :prompt => "Assigned person") %><br />
+				<%= f.submit :class => "btn" %>
+			</div>
+		</div>
+	</fieldset>
+<% end %>

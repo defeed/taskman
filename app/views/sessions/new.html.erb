@@ -1,0 +1,25 @@
+<h1>Log in to your account</h1>
+<%= form_tag sessions_path do %>
+<fieldset>	
+	<div class="control-group">
+  	<%= label_tag :username, "Username", :class => "control-label" %>
+  	<div class="controls">
+  		<%= text_field_tag :username, params[:username] %>
+  	</div>
+	</div>
+
+	<div class="control-group">
+  	<%= label_tag :password, "Password", :class => "control-label" %>
+  	<div class="controls">
+  		<%= password_field_tag :password %>
+  	</div>
+	</div>
+
+	<div class="control-group">
+  	<div class="controls">
+  		<%= submit_tag "Log in", :class => "btn" %>
+			<%= link_to "Register an account", register_url %>
+  	</div>
+	</div>
+</fieldset>
+<% end %>
