@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.6'
 gem 'redcarpet'
 gem 'best_in_place'
-gem 'heroku'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -13,7 +12,6 @@ group :development, :test do
 end
 
 group :production do
-  gem 'taps'
   gem 'pg'
 end
 
@@ -40,10 +38,10 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Deploy with Capistrano
-# gem 'capistrano'
+gem 'capistrano'
 
 # To use debugger
 # gem 'debugger'
